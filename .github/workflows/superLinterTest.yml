@@ -1,0 +1,21 @@
+name: Lint HTML files
+
+on:
+  pull_request:
+    paths:
+      - '**/*.html'  # Trigger on any changes to HTML files
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run Super Linter
+      uses: github/super-linter@v5
+      env:
+        RUN_LOCAL: false
+        LINTER_RULES_PATH: "./.super-linter"
+        LINTER_ONLY: "html"  # Lint only HTML files
